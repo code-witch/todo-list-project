@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const index = (req,res) => {
     res.render('index')
 }
