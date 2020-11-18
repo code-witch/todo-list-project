@@ -1,0 +1,36 @@
+body{
+    margin: 0 auto;
+    width: fit-content;
+}
+
+#formWrapper{
+    margin: auto 0;
+    width: fit-content;
+    padding-right: 60px;
+    padding-left: 60px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    border: solid 2px black ;
+    margin-top: 10px;
+}
+
+.inputField{
+    margin-bottom: 10px;
+    padding: 2px;
+    font-size: 20px;
+    width: 225px;
+}
+
+.labelField{
+    font-size: 20px;
+}
+
+#button{
+    font-size: 20px;
+    width: 90px;
+    height: 35px;
+    margin-top: 10px;
+    color: white;
+    background-color: rgb(58, 137, 255);
+    border-radius: 4px;
+}

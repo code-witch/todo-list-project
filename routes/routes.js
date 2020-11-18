@@ -1,28 +1,34 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const index = (req,res) => {
-    res.render('index')
-}
-
-// return all data
-const getAllData = () => {
-    let data = JSON.parse(fs.readFileSync('./data.json', {encoding:'utf-8'}));
-    return data;
-}
-
-// add user to the data file
-const addTask = task => {
-    let data = getAllData();
-    data.push(task);
-    writeAllData(data);
+exports.index = (req, res) => {
+    res.render("index", {
+        "title": "Index"
+    });
 };
 
-// override all data with new data
-const writeAllData = data => {
-    fs.writeFileSync('./data.json',JSON.stringify(data, null, 4),{encoding:'utf-8'});
-}
+exports.createTask = (req, res) => {
+    let task = {
+        "taskName": req.body.name,
+        "taskDesc": req.body.desc
+    };
+    readFile(task);
+    res.redirect('/');
+};
 
+const readFile = (task) => {
 
-module.exports = {
-    index,
+    if (!fs.existsSync('tasks.json')) {
+        fs.writeFileSync("tasks.json", "{\"tasks\":[]}");
+    }
+    fs.readFile("tasks.json", { encoding: 'utf-8' }, function (err, tasks) {
+        if (err) throw err;
+        var arrayTasks = JSON.parse(tasks);
+        arrayTasks.tasks.push(task);
+        console.log(arrayTasks);
+
+        fs.writeFile("tasks.json", JSON.stringify(arrayTasks), "utf-8", function () {
+            console.log("Write Done")
+        })
+    });
+
 }
