@@ -14,4 +14,9 @@ html
             input(class="inputField" type='text' placeholder="Task Description" name='desc' )
             br
             input(type="submit" text="Add Task" id="button")
+        if (tasks != null)
+            each task in tasks.tasks
+                h2 #{task.taskName}
+                p #{task.taskDesc}
+
 

@@ -1,10 +1,21 @@
 const fs = require("fs");
-
-exports.index = (req, res) => {
-    res.render("index", {
-        "title": "Index"
-    });
-};
+const filename = "./public/tasks.json";
+if(fs.existsSync(filename)){
+    const tasks = require("../public/tasks.json");
+ 
+    exports.index = (req, res) => {
+        res.render("index", {
+            "title": "Index",
+            "tasks": tasks
+        });
+    };
+}else{
+    exports.index = (req, res) => {
+        res.render("index", {
+            "title": "Index"
+        });
+    }
+}
 
 exports.createTask = (req, res) => {
     let task = {
@@ -17,18 +28,17 @@ exports.createTask = (req, res) => {
 
 const readFile = (task) => {
 
-    if (!fs.existsSync('tasks.json')) {
-        fs.writeFileSync("tasks.json", "{\"tasks\":[]}");
+    if (!fs.existsSync(filename)) {
+        fs.writeFileSync(filename, "{\"tasks\":[]}");
     }
-    fs.readFile("tasks.json", { encoding: 'utf-8' }, function (err, tasks) {
+    fs.readFile(filename, { encoding: 'utf-8' }, function (err, tasks) {
         if (err) throw err;
         var arrayTasks = JSON.parse(tasks);
         arrayTasks.tasks.push(task);
         console.log(arrayTasks);
 
-        fs.writeFile("tasks.json", JSON.stringify(arrayTasks), "utf-8", function () {
-            console.log("Write Done")
+        fs.writeFile(filename, JSON.stringify(arrayTasks), "utf-8", function () {
+            console.log("Write Done");
         })
     });
-
 }
