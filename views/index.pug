@@ -16,6 +16,9 @@ html
             input(type="submit" text="Add Task" id="button")
 
         div(id='task_holder')
-
-        script(src='tasks.json')
-        script(src='script.js')
+            div(class='task')
+                each task in tasks 
+                    h1 task.taskName
+                    p task.taskDesc
+                    span &#x2713;
+                    span &times;

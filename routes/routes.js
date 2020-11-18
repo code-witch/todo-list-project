@@ -2,7 +2,8 @@ const fs = require("fs");
 
 exports.index = (req, res) => {
     res.render("index", {
-        "title": "Index"
+        "title": "Index",
+        "tasks": []
     });
 };
 
@@ -11,8 +12,11 @@ exports.createTask = (req, res) => {
         "taskName": req.body.name,
         "taskDesc": req.body.desc
     };
-    readFile(task);
-    res.redirect('/');
+    let tasks = readFile(task);
+    console.log(tasks);
+    res.render('index', {
+        "tasks" : tasks
+    });
 };
 
 const readFile = (task) => {
@@ -29,6 +33,8 @@ const readFile = (task) => {
         fs.writeFile("./public/tasks.json", JSON.stringify(arrayTasks), "utf-8", function () {
             console.log("Write Done");
         });
+
+        return arrayTasks.tasks;
     });
 
 }
