@@ -5,10 +5,13 @@ html
     body
         form(id="formWrapper" method="POST" action="/")
             h1 Create New Task
-            label(for='name') Task Title: 
-            input(class="inputField" type='text' value='name' name='name')
+            label(for='name' class="labelField") Task Title:
             br
-            label(for='desc') Task Description: 
-            input(class="inputField" type='text' value='desc' name='desc')
+            input(class="inputField" type='text' name='name' placeholder="Task Title")
+            br
+            label(for='desc' class="labelField") Task Description: 
+            br
+            input(class="inputField" type='text' placeholder="Task Description" name='desc' )
             br
             input(type="submit" text="Add Task" id="button")
+

@@ -11,33 +11,24 @@ exports.createTask = (req, res) => {
         "taskName": req.body.name,
         "taskDesc": req.body.desc
     };
-
-    let jsonData = JSON.parse(readFile());
-    if (jsonData != null) {
-        console.log(task);
-        jsonData.push(task);
-        writeFile(JSON.stringify(jsonData));
-    } else {
-        writeFile(JSON.stringify(task));
-    }
-
+    readFile(task);
     res.redirect('/');
 };
 
-const readFile = () => {
-    var jsonData;
-    if (fs.existsSync('tasks.json')) {
-        let rawData = fs.readFileSync("tasks.json", { encoding: 'utf-8' });
-        jsonData = JSON.parse(JSON.stringify(rawData));
-    }
-    else {
-        console.log("Dosn't Exists")
-        fs.writeFileSync("tasks.json", "[]");
-        jsonData = null;
-    }
-    return jsonData;
-}
+const readFile = (task) => {
 
-const writeFile = (jsonData) => {
-    fs.writeFileSync("tasks.json", jsonData);
+    if (!fs.existsSync('tasks.json')) {
+        fs.writeFileSync("tasks.json", "{\"tasks\":[]}");
+    }
+    fs.readFile("tasks.json", { encoding: 'utf-8' }, function (err, tasks) {
+        if (err) throw err;
+        var arrayTasks = JSON.parse(tasks);
+        arrayTasks.tasks.push(task);
+        console.log(arrayTasks);
+
+        fs.writeFile("tasks.json", JSON.stringify(arrayTasks), "utf-8", function () {
+            console.log("Write Done")
+        })
+    });
+
 }
