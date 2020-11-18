@@ -1,28 +1,43 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const index = (req,res) => {
-    res.render('index')
-}
-
-// return all data
-const getAllData = () => {
-    let data = JSON.parse(fs.readFileSync('./data.json', {encoding:'utf-8'}));
-    return data;
-}
-
-// add user to the data file
-const addTask = task => {
-    let data = getAllData();
-    data.push(task);
-    writeAllData(data);
+exports.index = (req, res) => {
+    res.render("index", {
+        "title": "Index"
+    });
 };
 
-// override all data with new data
-const writeAllData = data => {
-    fs.writeFileSync('./data.json',JSON.stringify(data, null, 4),{encoding:'utf-8'});
+exports.createTask = (req, res) => {
+    let task = {
+        "taskName": req.body.name,
+        "taskDesc": req.body.desc
+    };
+
+    let jsonData = JSON.parse(readFile());
+    if (jsonData != null) {
+        console.log(task);
+        jsonData.push(task);
+        writeFile(JSON.stringify(jsonData));
+    } else {
+        writeFile(JSON.stringify(task));
+    }
+
+    res.redirect('/');
+};
+
+const readFile = () => {
+    var jsonData;
+    if (fs.existsSync('tasks.json')) {
+        let rawData = fs.readFileSync("tasks.json", { encoding: 'utf-8' });
+        jsonData = JSON.parse(JSON.stringify(rawData));
+    }
+    else {
+        console.log("Dosn't Exists")
+        fs.writeFileSync("tasks.json", "[]");
+        jsonData = null;
+    }
+    return jsonData;
 }
 
-
-module.exports = {
-    index,
+const writeFile = (jsonData) => {
+    fs.writeFileSync("tasks.json", jsonData);
 }

@@ -2,6 +2,7 @@ const express = require('express');
 const routes = require('./routes/routes');
 const bodyParser = require('body-parser');
 
+
 const hostname = 'localhost';
 const port = '3000';
 
@@ -16,6 +17,7 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', routes.index);
+app.post('/', urlEncodedParser, routes.createTask);
 
 app.listen(port, hostname, () =>{
     console.log(`todo-list running at http://${hostname}:${port}`);

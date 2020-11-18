@@ -3,9 +3,15 @@ html
     head
         link(href='./style.css', rel='stylesheet' type="text/css")   
     body
-        form(action="")
+        form(id="formWrapper" method="POST" action="/")
+            h1 Create New Task
             label(for='name') Task Title: 
-            input(type='text' placeholder='Enter Task Name...' name='name')
+            input(class="inputField" type='text' value='name' name='name')
             br
             label(for='desc') Task Description: 
-            input(type='text' placeholder='Enter Task Description...' name='desc')
+            input(class="inputField" type='text' value='desc' name='desc')
+            br
+            input(type="submit" text="Add Task" id="button")
+        div(id="taskCard")
+            h1(id="taskHeader")
+            p(id="taskDesc")
