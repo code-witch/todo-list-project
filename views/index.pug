@@ -1,6 +1,7 @@
 doctype html
 html
     head
+        link(href='./dist/dragula.css' rel='stylesheet' type="text/css")
         link(href='./style.css', rel='stylesheet' type="text/css")   
     body
         form(id="formWrapper" method="POST" action="/")
@@ -28,3 +29,6 @@ html
                         br
                         label(for='delete' class="labelField") Delete: 
                         input(type='checkbox' name='delete')
+        
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js')
+        script(src='script.js')

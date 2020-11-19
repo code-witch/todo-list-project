@@ -1,6 +1,9 @@
 const fs = require("fs");
 
 exports.index = (req, res) => {
+    if (!fs.existsSync('tasks.json')) {
+        fs.writeFileSync("tasks.json", "{\"tasks\":[]}");
+    }
     let tasks = JSON.parse(fs.readFileSync('./tasks.json'))
 
     res.render("index", {
@@ -14,7 +17,7 @@ exports.createTask = (req, res) => {
         "taskName": req.body.name,
         "taskDesc": req.body.desc
     };
-    let tasks = readFile(task);
+    readFile(task);
     res.redirect('/');
 };
 
@@ -27,12 +30,10 @@ const readFile = (task) => {
         if (err) throw err;
         var arrayTasks = JSON.parse(tasks);
         arrayTasks.tasks.push(task);
-        console.log(arrayTasks);
+        // console.log(arrayTasks);
 
         fs.writeFile("tasks.json", JSON.stringify(arrayTasks), "utf-8", function () {
             console.log("Write Done");
         });
-
-        return arrayTasks.tasks;
     });
 }
