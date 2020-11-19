@@ -73,6 +73,26 @@ const removeTask = taskName => {
     writeAllData(data.filter(data=>data != null));
 }
 
+
+// edit task with new all new data 
+const updateTask = newTask => {
+    let oldTask = getTask(newTask.taskName);
+    removeTask(oldTask.username);
+    addTask(newTask);
+
+}
+
+// gets a specific users data
+const getTask = taskName => {
+    let data = getAllData();
+    for(datum of data) {
+        if(datum.taskName == taskName) {
+            return datum;
+        }
+    }
+    return undefined; 
+}
+
 module.exports = {
     index,
     createTask
