@@ -18,7 +18,7 @@ html
         div(id='task_holder')
             div(class='task')
                 each task in tasks 
-                    form(id ="formWrapper" method="POST" action="/delete_item")
+                    form(id ="formWrapper" method="POST" action="/update_item")
                         input(class="inputField" type='text' name='name' placeholder=`${task.taskName}`)
                         br
                         input(class="inputField" type='text' name='desc' placeholder=`${task.taskDesc}`)
