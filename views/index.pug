@@ -20,9 +20,9 @@ html
             div(class='task' id='task')
                 each task in tasks 
                     form(id ="formWrapper" method="POST" action="/update_item")
-                        input(class="inputField" id=`${task.taskName}` type='text' name='name' placeholder=`${task.taskName}`)
+                        input(class="inputField" id=`${task.taskName}` type='text' name='name' value=`${task.taskName}`)
                         br
-                        input(class="inputField" id=`${task.taskDesc}` type='text' name='desc' placeholder=`${task.taskDesc}`)
+                        input(class="inputField" id=`${task.taskDesc}` type='text' name='desc' value=`${task.taskDesc}`)
                         br
                         label(for='check' class="labelField") Compeleted? 
                         input(type='checkbox' name='check')
