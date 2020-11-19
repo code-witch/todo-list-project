@@ -59,6 +59,19 @@ const writeAllData = data => {
     fs.writeFileSync('./tasks.json',JSON.stringify(data, null, 4),{encoding:'utf-8'});
 }
 
+// remove task from file
+const removeTask = taskName => {
+    let data = getAllData();
+    for(let i = 0; i < data.length; i++) {
+        // change the `taskName` to what ever we are deleting on...
+        // this includes the parameter at the top and the stuff in the if statement below
+        if(data[i].taskName == taskName) {
+            delete data[i];
+            break;
+        }
+    }
+    writeAllData(data.filter(data=>data != null));
+}
 
 module.exports = {
     index,
