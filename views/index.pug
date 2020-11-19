@@ -18,7 +18,11 @@ html
         div(id='task_holder')
             div(class='task')
                 each task in tasks 
-                    h1 task.taskName
-                    p task.taskDesc
-                    span &#x2713;
-                    span &times;
+                    form(id ="formWrapper" method="POST" action="/delete_item")
+                        h1 #{task.taskName}
+                        p #{task.taskDesc}
+                        label(for='check' class="labelField") Compeleted? 
+                        input(type='checkbox' name='check')
+                        br
+                        label(for='delete' class="labelField") Delete: 
+                        input(type='checkbox' name='delete')
