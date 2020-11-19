@@ -82,7 +82,7 @@ const updateTask = newTask => {
 
 }
 
-// gets a specific users data
+// gets a specific task data
 const getTask = taskName => {
     let data = getAllData();
     for(datum of data) {
