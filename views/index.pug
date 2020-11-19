@@ -19,8 +19,10 @@ html
             div(class='task')
                 each task in tasks 
                     form(id ="formWrapper" method="POST" action="/delete_item")
-                        h1 #{task.taskName}
-                        p #{task.taskDesc}
+                        input(class="inputField" type='text' name='name' placeholder=`${task.taskName}`)
+                        br
+                        input(class="inputField" type='text' name='desc' placeholder=`${task.taskDesc}`)
+                        br
                         label(for='check' class="labelField") Compeleted? 
                         input(type='checkbox' name='check')
                         br
