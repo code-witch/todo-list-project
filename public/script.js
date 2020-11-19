@@ -1,1 +1,1 @@
-dragula([document.getElementById("task_holder")]);
+dragula([document.getElementById("task")]);

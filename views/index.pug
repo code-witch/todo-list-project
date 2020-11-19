@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        link(href='./dist/dragula.css' rel='stylesheet' type="text/css")
+        link(href='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.css' rel='stylesheet' integrity="sha512-gGkweS4I+MDqo1tLZtHl3Nu3PGY7TU8ldedRnu60fY6etWjQ/twRHRG2J92oDj7GDU2XvX8k6G5mbp0yCoyXCA==" crossorigin="anonymous" type="text/css")
         link(href='./style.css', rel='stylesheet' type="text/css")   
     body
         form(id="formWrapper" method="POST" action="/")
@@ -17,7 +17,7 @@ html
             input(type="submit" text="Add Task" id="button")
 
         div(id='task_holder')
-            div(class='task')
+            div(class='task' id='task')
                 each task in tasks 
                     form(id ="formWrapper" method="POST" action="/update_item")
                         input(class="inputField" id=`${task.taskName}` type='text' name='name' placeholder=`${task.taskName}`)
