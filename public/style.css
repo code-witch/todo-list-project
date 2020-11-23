@@ -1,10 +1,27 @@
 body{
     margin: 0 auto;
-    width: fit-content;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#task_holder {
+    margin-left: 10px;
+}
+.task {
+    display: flex;
+    flex-direction: row;
+
+    flex-flow: wrap;
+
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #formWrapper{
-    margin: auto 0;
     width: fit-content;
     padding-right: 60px;
     padding-left: 60px;
@@ -12,6 +29,7 @@ body{
     padding-top: 10px;
     border: solid 2px black ;
     margin-top: 10px;
+    margin-left: 10px;
 }
 
 .inputField{
