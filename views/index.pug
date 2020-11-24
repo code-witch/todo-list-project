@@ -14,21 +14,24 @@ html
             br
             input(class="inputField" type='text' placeholder="Task Description" name='desc' )
             br
-            input(type="submit" text="Add Task" id="button")
+            input(type="submit" text="Add Task" id="button" class='button')
 
         div(id='task_holder')
             div(class='task' id='task')
                 each task in tasks 
-                    form(id ="formWrapper" method="POST" action="/update_item")
-                        input(class="inputField" id=`${task.taskName}` type='text' name='name' value=`${task.taskName}`)
-                        br
-                        input(class="inputField" id=`${task.taskDesc}` type='text' name='desc' value=`${task.taskDesc}`)
-                        br
-                        label(for='check' class="labelField") Compeleted? 
-                        input(type='checkbox' name='check')
-                        br
-                        label(for='delete' class="labelField") Delete: 
-                        input(type='checkbox' name='delete')
+                    div(id="formWrapper")
+                        form(method="POST" action="/update_item")
+                            input(class="inputField" id=`${task.taskName}` type='text' name='name' value=`${task.taskName}`)
+                            br
+                            input(class="inputField" id=`${task.taskDesc}` type='text' name='desc' value=`${task.taskDesc}`)
+                            br
+                            label(for='check' class="labelField") Compeleted? 
+                            input(type='checkbox' name='check')
+                            br
+                            //- label(for='delete' class="labelField") Delete: 
+                            //- input(type='checkbox' name='delete')
+                        form(method="POST" action="/delete_item/" + task.taskName)
+                            input(type="submit"  value='Delete' class='button')
         
         script(src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js')
         script(src='script.js')

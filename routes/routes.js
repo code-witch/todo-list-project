@@ -77,7 +77,7 @@ const removeTask = taskName => {
 // edit task with new all new data 
 const updateTask = newTask => {
     let oldTask = getTask(newTask.taskName);
-    removeTask(oldTask.username);
+    removeTask(oldTask.taskName);
     addTask(newTask);
 
 }
@@ -93,7 +93,14 @@ const getTask = taskName => {
     return undefined; 
 }
 
+const deleteItem = (req, res) => {
+    removeTask(req.params.taskName)
+    res.redirect('/');
+};
+
+
 module.exports = {
     index,
-    createTask
+    createTask,
+    deleteItem
 }

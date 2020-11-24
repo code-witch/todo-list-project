@@ -18,6 +18,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', routes.index);
 app.post('/', urlEncodedParser, routes.createTask);
+app.post('/delete_item/:taskName', urlEncodedParser, routes.deleteItem);
 
 app.listen(port, hostname, () =>{
     console.log(`todo-list running at http://${hostname}:${port}`);
